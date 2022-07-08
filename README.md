@@ -1,8 +1,8 @@
-# Base Repository Template
+# Cachier Service
 
-A template of README best practices to make your README simple to understand and easy to use.
+Service application for cachier.
 
-## Table of Contents
+<!-- ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -39,4 +39,4 @@ Please [open an issue](https://github.com/fraction/readme-boilerplate/issues/new
 
 ## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/fraction/readme-boilerplate/compare/).
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/fraction/readme-boilerplate/compare/). -->

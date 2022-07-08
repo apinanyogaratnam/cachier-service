@@ -7,7 +7,14 @@ class Root(Resource):
         pass
 
     def get(self: 'Root') -> object:
-        return 'Hello World!'
+        cache_key: str = request.args.get('cache_key', type=str, default=None)
+
+        if not cache_key: return None
+
+        # TODO: get data from a file
+        data = None
+
+        return data
 
     def post(self: 'Root') -> bool:
         body: object = request.get_data()

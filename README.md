@@ -2,6 +2,11 @@
 
 Service application for cachier.
 
+
+<!--
+TODO: create websocket and restful endpoint for connecting to cachier
+-->
+
 <!-- ## Table of Contents
 
 - [Installation](#installation)

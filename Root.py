@@ -17,7 +17,14 @@ class Root(Resource):
         return data
 
     def post(self: 'Root') -> bool:
-        body: object = request.get_data()
+        body: object = request.get_json()
+
+        if not body: return False
+
+        cache_key: str = body.get('cache_key', type=str, default=None)
+        cached_data: object = body.get('cached_data', type=object, default=None)
+
+        if not cache_key or cached_data: return False
 
         # TODO: save body to a file
 

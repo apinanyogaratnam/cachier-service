@@ -27,7 +27,6 @@ class Root(Resource):
         if not cache_key or cached_data: return False
 
         # TODO: save body to a file
-
         saved_successfully: bool = True
 
         return saved_successfully

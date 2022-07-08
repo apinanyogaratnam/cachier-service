@@ -1,3 +1,4 @@
+from flask import request
 from flask_restful import Resource
 
 
@@ -9,4 +10,10 @@ class Root(Resource):
         return 'Hello World!'
 
     def post(self: 'Root') -> bool:
-        return True
+        body: object = request.get_data()
+
+        # TODO: save body to a file
+
+        saved_successfully: bool = True
+
+        return saved_successfully

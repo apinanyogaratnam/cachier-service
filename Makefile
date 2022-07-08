@@ -1,8 +1,10 @@
-IMAGE := base-repository-template
+IMAGE := base-python-template
 VERSION := 0.0.1
 REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}
 IMAGE_VERSION_NAME := ${REGISTRY_URL}:${VERSION}
 IMAGE_LATEST_VERSION_NAME := ${REGISTRY_URL}:latest
+
+.PHONY: venv
 
 build:
 	docker build -t ${IMAGE} .
@@ -36,3 +38,9 @@ push-image:
 
 all:
 	make build && make auth && make tag && make push
+
+freeze:
+	pip freeze > requirements.txt
+
+venv:
+	python3 -m venv venv

@@ -1,6 +1,3 @@
 {
-    "makefile.extensionOutputFolder": "./.vscode",
-    "cSpell.words": [
-        "Cachier"
-    ]
+    "makefile.extensionOutputFolder": "./.vscode"
 }

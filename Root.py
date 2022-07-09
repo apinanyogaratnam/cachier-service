@@ -18,7 +18,7 @@ class Root(Resource):
         return {'value': data}
 
     def post(self: 'Root') -> dict:
-        body: object = request.get_json()
+        body: dict = request.get_json()
 
         if not body:
             print('no body received')

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  cachier-service:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./volumes/cachier-service:/app
+    environment:
+      - PORT=8000
+    restart: always
+
+volumes:
+  cachier-service: ~

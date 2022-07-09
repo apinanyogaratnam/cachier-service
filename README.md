@@ -10,6 +10,7 @@ TODO: add expiration to cache
 TODO: move from prints to logging
 TODO: document methods
 TODO: remove print statements that aren't as useful for server logs
+TODO: rename cache_* request body fields to key, value, expiration only
 
 {
     "key": {

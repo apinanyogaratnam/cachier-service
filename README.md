@@ -15,6 +15,9 @@ TODO: move from prints to logging
         "expiry": "2020-01-01T00:00:00Z"
     }
 }
+
+next release:
+TODO: add cli to manage cache like redis-cli
 -->
 
 <!-- ## Table of Contents

@@ -1,6 +1,6 @@
 FROM python:3.10.4-alpine
 
-LABEL org.opencontainers.image.source=https://github.com/apinanyogaratnam/REPO
+LABEL org.opencontainers.image.source=https://github.com/apinanyogaratnam/cachier-service
 
 WORKDIR /app
 

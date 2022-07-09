@@ -8,6 +8,13 @@ TODO: create websocket and restful endpoint for connecting to cachier (might req
 TODO: add support with other languages for cachier package
 TODO: add expiration to cache
 TODO: move from prints to logging
+
+{
+    "key": {
+        "data": [1, 2, 3],
+        "expiry": "2020-01-01T00:00:00Z"
+    }
+}
 -->
 
 <!-- ## Table of Contents

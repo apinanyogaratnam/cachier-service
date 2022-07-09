@@ -55,7 +55,7 @@ class Root(Resource):
             return False
 
         try:
-            with open('data.json', 'w') as f:
+            with open('data.json', 'r+') as f:
                 # read the existing data
                 data: dict = json.load(f)
 

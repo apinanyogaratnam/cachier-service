@@ -8,6 +8,7 @@ TODO: create websocket and restful endpoint for connecting to cachier (might req
 TODO: add support with other languages for cachier package
 TODO: add expiration to cache
 TODO: move from prints to logging
+TODO: document methods
 
 {
     "key": {

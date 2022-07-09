@@ -58,6 +58,7 @@ class Root(Resource):
             with open('data.json', 'r+') as f:
                 # read the existing data
                 data: dict = json.load(f)
+                print('reading data', data)
 
                 # update the data
                 data[key] = value

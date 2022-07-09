@@ -13,8 +13,7 @@ class Root(Resource):
 
         if not cache_key: return None
 
-        # TODO: get data from a file
-        data = None
+        data = self.read_data(cache_key)
 
         return data
 

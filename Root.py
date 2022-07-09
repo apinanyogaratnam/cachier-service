@@ -8,16 +8,16 @@ class Root(Resource):
     def __init__(self: 'Root') -> None:
         pass
 
-    def get(self: 'Root') -> object:
+    def get(self: 'Root') -> dict:
         cache_key: str = request.args.get('cache_key', type=str, default=None)
 
         if not cache_key: return None
 
         data = self.read_data(cache_key)
 
-        return data
+        return {'value': data}
 
-    def post(self: 'Root') -> bool:
+    def post(self: 'Root') -> dict:
         body: object = request.get_json()
 
         if not body: return False
@@ -29,7 +29,7 @@ class Root(Resource):
 
         is_saved_successfully: bool = self.write_data(cache_key, cache_value)
 
-        return is_saved_successfully
+        return {'is_saved_successfully': is_saved_successfully}
 
     def read_data(self: 'Root', key: str) -> object:
         if not key: return None

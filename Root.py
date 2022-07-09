@@ -30,3 +30,9 @@ class Root(Resource):
         saved_successfully: bool = True
 
         return saved_successfully
+
+    def read_data(self: 'Root') -> object:
+        pass
+
+    def write_data(self: 'Root') -> bool:
+        pass

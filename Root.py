@@ -24,14 +24,13 @@ class Root(Resource):
         if not body: return False
 
         cache_key: str = body.get('cache_key', type=str, default=None)
-        cached_data: object = body.get('cached_data', type=object, default=None)
+        cache_value: object = body.get('cache_value', type=object, default=None)
 
-        if not cache_key or cached_data: return False
+        if not cache_key or cache_value: return False
 
-        # TODO: save body to a file
-        saved_successfully: bool = True
+        is_saved_successfully: bool = self.write_data(cache_key, cache_value)
 
-        return saved_successfully
+        return is_saved_successfully
 
     def read_data(self: 'Root', key: str) -> object:
         if not key: return None

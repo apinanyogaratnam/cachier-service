@@ -9,6 +9,7 @@ TODO: add support with other languages for cachier package
 TODO: add expiration to cache
 TODO: move from prints to logging
 TODO: document methods
+TODO: remove print statements that aren't as useful for server logs
 
 {
     "key": {

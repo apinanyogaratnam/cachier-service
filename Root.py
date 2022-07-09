@@ -20,7 +20,9 @@ class Root(Resource):
     def post(self: 'Root') -> dict:
         body: object = request.get_json()
 
-        if not body: return False
+        if not body:
+            print('no body received')
+            return False
 
         cache_key: str = body.get('cache_key', None)
         cache_value: object = body.get('cache_value', None)

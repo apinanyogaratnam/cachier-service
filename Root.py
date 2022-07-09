@@ -29,7 +29,7 @@ class Root(Resource):
         cache_key: str = body.get('cache_key', None)
         cache_value: object = body.get('cache_value', None)
 
-        if not cache_key or cache_value:
+        if not cache_key or not cache_value:
             print('no cache key or value received')
             return False
 

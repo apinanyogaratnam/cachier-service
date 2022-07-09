@@ -24,6 +24,8 @@ class Root(Resource):
             print('no body received')
             return False
 
+        print('received body', body)
+
         cache_key: str = body.get('cache_key', None)
         cache_value: object = body.get('cache_value', None)
 

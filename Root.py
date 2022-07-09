@@ -22,7 +22,7 @@ class Root(Resource):
 
         if not body: return False
 
-        cache_key: str = body.get('cache_key', type=str, default=None)
+        cache_key: str = body.get('cache_key', None)
         cache_value: object = body.get('cache_value', None)
 
         if not cache_key or cache_value: return False

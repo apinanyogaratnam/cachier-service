@@ -1,3 +1,5 @@
+import json
+
 from flask import request
 from flask_restful import Resource
 
@@ -31,8 +33,31 @@ class Root(Resource):
 
         return saved_successfully
 
-    def read_data(self: 'Root') -> object:
-        pass
+    def read_data(self: 'Root', key: str) -> object:
+        if not key: return None
 
-    def write_data(self: 'Root') -> bool:
-        pass
+        with open('data.json', 'r') as f:
+            data: dict = json.load(f)
+
+        return data.get(key, None)
+
+    def write_data(self: 'Root', key: str, value: object) -> bool:
+        data: dict = request.get_json()
+
+        if not data: return False
+
+        try:
+            with open('data.json', 'w') as f:
+                # read the existing data
+                data: dict = json.load(f)
+
+                # update the data
+                data[key] = value
+
+                # write the new data
+                json.dump(data, f)
+        except Exception as error:
+            print(error)
+            return False
+
+        return True

@@ -20,6 +20,7 @@ TODO: remove print statements that aren't as useful for server logs
 
 next release:
 TODO: add cli to manage cache like redis-cli
+TODO: cron job to delete expired cache?
 -->
 
 <!-- ## Table of Contents

@@ -42,7 +42,9 @@ class Root(Resource):
     def write_data(self: 'Root', key: str, value: object) -> bool:
         data: dict = request.get_json()
 
-        if not data: return False
+        if not data:
+            print('no data to write')
+            return False
 
         try:
             with open('data.json', 'w') as f:

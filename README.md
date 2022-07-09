@@ -6,7 +6,6 @@ Service application for cachier.
 <!--
 TODO: create websocket connecting to cachier (might require two different services)
 TODO: add support with other languages for cachier package
-TODO: add expiration to cache
 TODO: move from prints to logging
 TODO: document methods
 TODO: remove print statements that aren't as useful for server logs
@@ -14,13 +13,6 @@ TODO: rename cache_* request body fields to key, value, expiration only
 TODO: add tests
 TODO: refactor data source to use sqlite3 instead of json
 TODO: cron job to backup data
-
-{
-    "key": {
-        "data": [1, 2, 3],
-        "expiry": "2020-01-01T00:00:00Z"
-    }
-}
 
 next release:
 TODO: add cli to manage cache like redis-cli

@@ -55,15 +55,13 @@ class Root(Resource):
             return False
 
         try:
-            with open('data.json', 'r+') as f:
-                # read the existing data
+            with open('data.json', 'r') as f:
                 data: dict = json.load(f)
-                print('reading data', data)
 
-                # update the data
-                data[key] = value
+            # update the data
+            data[key] = value
 
-                # write the new data
+            with open('data.json', 'w') as f:
                 json.dump(data, f)
         except Exception as error:
             print(error)

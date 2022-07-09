@@ -32,7 +32,9 @@ class Root(Resource):
         return {'is_saved_successfully': is_saved_successfully}
 
     def read_data(self: 'Root', key: str) -> object:
-        if not key: return None
+        if not key:
+            print('no key to read')
+            return None
 
         with open('data.json', 'r') as f:
             data: dict = json.load(f)

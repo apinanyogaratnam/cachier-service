@@ -26,9 +26,9 @@ class Root(Resource):
 
         print('received body', body)
 
-        cache_key: str = body.get('cache_key', None)
-        cache_value: object = body.get('cache_value', None)
-        cache_expiry: int = body.get('cache_expiry', None)
+        cache_key: str | None = body.get('cache_key', None)
+        cache_value: object | None = body.get('cache_value', None)
+        cache_expiry: int | None = body.get('cache_expiry', None)
 
         if not cache_key or not cache_value:
             print('no cache key or value received')

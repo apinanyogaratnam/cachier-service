@@ -24,11 +24,7 @@ class SqliteDriver:
 
             if not result: return None
 
-            print('result', result)
-
             is_cache_expired = datetime.utcnow() > datetime.strptime(result[0]['cache_expiry'], '%Y-%m-%d %H:%M:%S')
-
-            print('is_cache_expired', is_cache_expired)
 
             if is_cache_expired:
                 self.delete_data(key, connection)

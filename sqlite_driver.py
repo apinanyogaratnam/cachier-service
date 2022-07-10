@@ -15,7 +15,7 @@ class SqliteDriver:
 
         with get_sqlite_connection(self.filename) as connection:
             query = f'''
-                SELECT cache_value, datetime('now', 'UTC') > cache_expiry AS is_cache_expired
+                SELECT cache_value, DATETIME(cache_expiry) AS cache_expiry
                 FROM cache
                 WHERE cache_key = '{key}';
             '''
@@ -24,7 +24,11 @@ class SqliteDriver:
 
             if not result: return None
 
-            is_cache_expired = result[0]['is_cache_expired']
+            print('result', result)
+
+            is_cache_expired = datetime.utcnow() > datetime.strptime(result[0]['cache_expiry'], '%Y-%m-%d %H:%M:%S')
+
+            print('is_cache_expired', is_cache_expired)
 
             if is_cache_expired:
                 self.delete_data(key, connection)

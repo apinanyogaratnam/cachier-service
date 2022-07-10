@@ -21,4 +21,5 @@ def write_sqlite_database(connection: sqlite3.Connection, query: str) -> bool:
             return True
         except Exception as error:
             print(error)
+            connection.rollback()
             return False

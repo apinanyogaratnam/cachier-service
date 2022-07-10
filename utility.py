@@ -23,3 +23,5 @@ def write_sqlite_database(connection: sqlite3.Connection, query: str) -> bool:
             print(error)
             connection.rollback()
             return False
+
+# TODO: create write_sqlite_database_with_parameters() function

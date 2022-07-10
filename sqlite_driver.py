@@ -43,8 +43,8 @@ class SqliteDriver:
 
             # update the data
             insert_data_query = f'''
-                INSERT INTO cache (created, cache_key, cache_value, cache_expiry)
-                VALUES (datetime('now'), '{key}', '{value}', '{encoded_expiry}');
+                INSERT INTO cache (cache_key, cache_value, cache_expiry)
+                VALUES ('{key}', '{value}', '{encoded_expiry}');
             '''
 
             return write_sqlite_database(connection, insert_data_query)

@@ -15,16 +15,18 @@ def query_sqlite_database(connection: sqlite3.Connection, query: str) -> object:
 
 def write_sqlite_database(connection: sqlite3.Connection, query: str) -> bool:
     cursor = connection.cursor()
+    is_successful = False
 
     try:
         cursor.execute(query)
         connection.commit()
-        cursor.close()
-        return True
+        is_successful = True
     except Exception as error:
         print(error)
         connection.rollback()
-        cursor.close()
-        return False
+
+    cursor.close()
+
+    return is_successful
 
 # TODO: create write_sqlite_database_with_parameters() function

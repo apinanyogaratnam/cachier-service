@@ -4,6 +4,8 @@ import sqlite3
 def main():
     connection = sqlite3.connect('cache.db')
 
+    drop_table_query = 'DROP TABLE IF EXISTS cache;'
+
     create_table_query = '''
         CREATE TABLE IF NOT EXISTS cache (
             cache_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -15,6 +17,8 @@ def main():
     '''
 
     try:
+        print('dropping table...')
+        connection.execute(drop_table_query)
         print('Creating table...')
         connection.execute(create_table_query)
         connection.commit()

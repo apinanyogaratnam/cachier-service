@@ -1,5 +1,5 @@
 IMAGE := cachier-service
-VERSION := 0.2.2
+VERSION := 0.2.3
 REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}
 IMAGE_VERSION_NAME := ${REGISTRY_URL}:${VERSION}
 IMAGE_LATEST_VERSION_NAME := ${REGISTRY_URL}:latest

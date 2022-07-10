@@ -35,15 +35,39 @@ class SqliteDriver:
     def write_data(self: 'SqliteDriver', key: str, value: str, expiry: int | None = None) -> bool:
         if not key: return False
 
-        with get_sqlite_connection(self.filename) as connection:
-            if not expiry:
-                encoded_expiry = 'NULL'
-            else:
-                expiry_date: datetime = datetime.utcnow() + timedelta(seconds=expiry)
-                encoded_expiry: str = expiry_date.isoformat()
+        # deserializing the value
+        value = json.dumps(value)
 
-            value = json.dumps(value)
-            # update the data
+        if not expiry:
+            expiry = 'NULL'
+        else:
+            expiry_date = datetime.utcnow() + timedelta(seconds=expiry)
+            encoded_expiry = expiry_date.isoformat()
+
+        with get_sqlite_connection(self.filename) as connection:
+            # check if key already exists in database
+            query = f'''
+                SELECT COUNT(*) AS count
+                FROM cache
+                WHERE cache_key = '{key}';
+            '''
+
+            result = query_sqlite_database(connection, query).to_dict('records')
+
+            is_key_exists = result[0]['count'] > 0
+            if is_key_exists:
+                # update data
+                update_data_query = f'''
+                    UPDATE cache
+                    SET
+                        cache_value = '{value}',
+                        cache_expiry = '{encoded_expiry}'
+                    WHERE cache_key = '{key}';
+                '''
+
+                return write_sqlite_database(connection, update_data_query)
+
+            # insert data if key does not exist
             insert_data_query = f'''
                 INSERT INTO cache (cache_key, cache_value, cache_expiry)
                 VALUES ('{key}', '{value}', '{encoded_expiry}');

@@ -7,7 +7,7 @@ class JsonDriver:
     def __init__(self: 'JsonDriver', filename: str) -> None:
         self.filename = filename
 
-    def read_data(self: 'JsonDriver', key: str) -> object:
+    def read_data(self: 'JsonDriver', key: str) -> object | None:
         if not key:
             print('no key to read')
             return None

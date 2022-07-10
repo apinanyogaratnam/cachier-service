@@ -67,12 +67,6 @@ class Root(Resource):
         return cache_value
 
     def write_data(self: 'Root', key: str, value: object, cache_expiry: int | None) -> bool:
-        data: dict = request.get_json()
-
-        if not data:
-            print('no data to write')
-            return False
-
         try:
             with open('data.json', 'r') as f:
                 data: dict = json.load(f)

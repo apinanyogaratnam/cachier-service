@@ -1,4 +1,5 @@
-from utility import get_sqlite_connection, query_sqlite_database
+import sqlite3
+from utility import get_sqlite_connection, query_sqlite_database, write_sqlite_database
 
 
 class SqliteDriver:
@@ -19,16 +20,21 @@ class SqliteDriver:
 
             if not result: return None
 
-        is_cache_expired = result[0]['is_cache_expired']
+            is_cache_expired = result[0]['is_cache_expired']
 
-        if is_cache_expired:
-            self.delete_data(key)
-            return None
+            if is_cache_expired:
+                self.delete_data(key, connection)
+                return None
 
         return result[0]['cache_value']
 
     def write_data(self: 'SqliteDriver', key: str, value: str, expiry: int | None = None) -> bool:
         pass
 
-    def delete_data(self: 'SqliteDriver', key: str) -> bool:
-        pass
+    def delete_data(self: 'SqliteDriver', key: str, connection: sqlite3.Connection) -> bool:
+        delete_data_query = f'''
+            DELETE FROM cache
+            WHERE cache_key = '{key}';
+        '''
+
+        return write_sqlite_database(connection, delete_data_query)

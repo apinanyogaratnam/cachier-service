@@ -26,7 +26,7 @@ class JsonDriver:
         if not cache_expiry: return cache_value
 
         expiry_date: datetime = datetime.fromisoformat(cache_expiry)
-        current_date: datetime = datetime.now()
+        current_date: datetime = datetime.utcnow()
 
         cache_expired: bool = current_date > expiry_date
         if cache_expired: return None

@@ -7,7 +7,7 @@ def main():
     create_table_query = '''
         CREATE TABLE IF NOT EXISTS cache (
             cache_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            created TIMESTAMP NOT NULL,
+            created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             cache_key TEXT NOT NULL,
             cache_value TEXT,
             cache_expiry TIMESTAMP

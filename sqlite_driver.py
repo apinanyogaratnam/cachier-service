@@ -1,3 +1,4 @@
+import json
 import sqlite3
 
 from datetime import datetime, timedelta
@@ -29,7 +30,7 @@ class SqliteDriver:
                 self.delete_data(key, connection)
                 return None
 
-        return result[0]['cache_value']
+        return json.loads(result[0]['cache_value'])
 
     def write_data(self: 'SqliteDriver', key: str, value: str, expiry: int | None = None) -> bool:
         if not key: return False
@@ -41,6 +42,7 @@ class SqliteDriver:
                 expiry_date: datetime = datetime.now() + timedelta(seconds=expiry)
                 encoded_expiry: str = expiry_date.isoformat()
 
+            value = json.dumps(value)
             # update the data
             insert_data_query = f'''
                 INSERT INTO cache (cache_key, cache_value, cache_expiry)

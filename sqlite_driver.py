@@ -20,7 +20,7 @@ class SqliteDriver:
                 WHERE cache_key = '{key}';
             '''
 
-            result = query_sqlite_database(connection, query)
+            result = query_sqlite_database(connection, query).to_dict('records')
 
             if not result: return None
 

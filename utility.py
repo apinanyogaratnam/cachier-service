@@ -3,8 +3,8 @@ import sqlite3
 import pandas as pd
 
 
-def get_sqlite_connection() -> sqlite3.Connection:
-    connection: sqlite3.Connection = sqlite3.connect('cache.db')
+def get_sqlite_connection(filename: str) -> sqlite3.Connection:
+    connection: sqlite3.Connection = sqlite3.connect(filename)
     return connection
 
 

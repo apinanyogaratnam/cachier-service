@@ -39,7 +39,7 @@ class SqliteDriver:
             if not expiry:
                 encoded_expiry = 'NULL'
             else:
-                expiry_date: datetime = datetime.now() + timedelta(seconds=expiry)
+                expiry_date: datetime = datetime.utcnow() + timedelta(seconds=expiry)
                 encoded_expiry: str = expiry_date.isoformat()
 
             value = json.dumps(value)

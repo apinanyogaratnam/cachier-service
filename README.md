@@ -21,6 +21,7 @@ TODO: support queries with keys with quotes
 TODO: raise errors everywhere in package where applicable, ex. if key is NoneType
 TODO: create a context manager for the sqlite database connection
 TODO: fix created column not being set as a datetime object
+TODO: test rest endpoint set without expiry field
 -->
 
 <!-- ## Table of Contents

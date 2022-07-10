@@ -17,6 +17,7 @@ TODO: cron job to backup data
 next release:
 TODO: add cli to manage cache like redis-cli
 TODO: cron job to delete expired cache?
+TODO: support queries with keys with quotes
 -->
 
 <!-- ## Table of Contents

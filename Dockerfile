@@ -1,4 +1,4 @@
-FROM python:3.10.4-alpine
+FROM python:3.10.4
 
 LABEL org.opencontainers.image.source=https://github.com/apinanyogaratnam/cachier-service
 

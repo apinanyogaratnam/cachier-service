@@ -15,7 +15,7 @@ class SqliteDriver:
 
         with get_sqlite_connection(self.filename) as connection:
             query = f'''
-                SELECT cache_value, NOW() > cache_expiry AS is_cache_expired
+                SELECT cache_value, datetime('now', 'UTC') > cache_expiry AS is_cache_expired
                 FROM cache
                 WHERE cache_key = '{key}';
             '''

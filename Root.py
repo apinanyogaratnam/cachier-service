@@ -5,10 +5,12 @@ from datetime import datetime, timedelta
 from flask import request
 from flask_restful import Resource
 
+from sqlite_driver import SqliteDriver
+
 
 class Root(Resource):
     def __init__(self: 'Root') -> None:
-        pass
+        self.sqlite_driver = SqliteDriver('cache.db')
 
     def get(self: 'Root') -> dict:
         cache_key: str = request.args.get('cache_key', type=str, default=None)
@@ -40,53 +42,12 @@ class Root(Resource):
 
         return {'is_saved_successfully': is_saved_successfully}
 
-    def read_data(self: 'Root', key: str) -> object:
-        if not key:
-            print('no key to read')
-            return None
+    def read_data(self: 'Root', key: str) -> object | None:
+        if not key: return None
 
-        with open('data.json', 'r') as f:
-            data: dict = json.load(f)
+        return self.sqlite_driver.read_data(key)
 
-        cache_metadata = data.get(key, None)
+    def write_data(self: 'Root', key: str, value: object, cache_expiry: int | None = None) -> bool:
+        if not key: return False
 
-        if not cache_metadata: return None
-
-        cache_value = cache_metadata.get('value', None)
-        cache_expiry = cache_metadata.get('expiry', None)
-
-        if not cache_value: return None
-        if not cache_expiry: return cache_value
-
-        expiry_date: datetime = datetime.fromisoformat(cache_expiry)
-        current_date: datetime = datetime.now()
-
-        cache_expired: bool = current_date > expiry_date
-        if cache_expired: return None
-
-        return cache_value
-
-    def write_data(self: 'Root', key: str, value: object, cache_expiry: int | None) -> bool:
-        try:
-            with open('data.json', 'r') as f:
-                data: dict = json.load(f)
-
-            if not cache_expiry:
-                encoded_expiry = ''
-            else:
-                expiry_date: datetime = datetime.now() + timedelta(seconds=cache_expiry)
-                encoded_expiry: str = expiry_date.isoformat()
-
-            # update the data
-            data[key] = {
-                'value': value,
-                'expiry': encoded_expiry,
-            }
-
-            with open('data.json', 'w') as f:
-                json.dump(data, f)
-        except Exception as error:
-            print(error)
-            return False
-
-        return True
+        return self.sqlite_driver.write_data(key, value, cache_expiry)

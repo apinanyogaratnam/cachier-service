@@ -18,6 +18,7 @@ next release:
 TODO: add cli to manage cache like redis-cli
 TODO: cron job to delete expired cache?
 TODO: support queries with keys with quotes
+TODO: raise errors everywhere in package where applicable, ex. if key is NoneType
 -->
 
 <!-- ## Table of Contents

@@ -19,10 +19,12 @@ def write_sqlite_database(connection: sqlite3.Connection, query: str) -> bool:
     try:
         cursor.execute(query)
         connection.commit()
+        cursor.close()
         return True
     except Exception as error:
         print(error)
         connection.rollback()
+        cursor.close()
         return False
 
 # TODO: create write_sqlite_database_with_parameters() function

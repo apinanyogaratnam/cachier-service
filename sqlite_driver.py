@@ -21,9 +21,14 @@ class SqliteDriver:
 
         is_cache_expired = result[0]['is_cache_expired']
 
-        if is_cache_expired: return None
+        if is_cache_expired:
+            self.delete_data(key)
+            return None
 
         return result[0]['cache_value']
 
     def write_data(self: 'SqliteDriver', key: str, value: str, expiry: int | None = None) -> bool:
+        pass
+
+    def delete_data(self: 'SqliteDriver', key: str) -> bool:
         pass

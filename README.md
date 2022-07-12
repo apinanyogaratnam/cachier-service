@@ -22,6 +22,7 @@ TODO: raise errors everywhere in package where applicable, ex. if key is NoneTyp
 TODO: create a context manager for the sqlite database connection
 TODO: fix created column not being set as a datetime object
 TODO: test rest endpoint set without expiry field
+TODO: add an option to use ram disk for cache
 -->
 
 <!-- ## Table of Contents

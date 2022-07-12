@@ -24,6 +24,7 @@ TODO: fix created column not being set as a datetime object
 TODO: test rest endpoint set without expiry field (and NULL being set in sqlite)
 TODO: add an option to use ram disk for cache
 TODO: load balance the service with nginx
+TODO: give users flexibility to choose which data store to use. I.e. sqlite or json or ram disk
 -->
 
 <!-- ## Table of Contents

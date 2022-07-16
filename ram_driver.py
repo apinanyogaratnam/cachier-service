@@ -30,27 +30,19 @@ class RamDriver:
 
         return cache_value
 
-    # def write_data(self: 'RamDriver', key: str, value: object, cache_expiry: int | None = None) -> bool:
-    #     try:
-    #         with open('data.json', 'r') as f:
-    #             data: dict = json.load(f)
+    def write_data(self: 'RamDriver', key: str, value: object, cache_expiry: int | None = None) -> bool:
+        try:
+            expiry_date = None
+            if cache_expiry:
+                expiry_date: datetime = datetime.now() + timedelta(seconds=cache_expiry)
 
-    #         if not cache_expiry:
-    #             encoded_expiry = ''
-    #         else:
-    #             expiry_date: datetime = datetime.now() + timedelta(seconds=cache_expiry)
-    #             encoded_expiry: str = expiry_date.isoformat()
+                # update the data
+                ram_storage[key] = {
+                    'value': value,
+                    'expiry': expiry_date,
+                }
+        except Exception as error:
+            print(error)
+            return False
 
-    #         # update the data
-    #         data[key] = {
-    #             'value': value,
-    #             'expiry': encoded_expiry,
-    #         }
-
-    #         with open('data.json', 'w') as f:
-    #             json.dump(data, f)
-    #     except Exception as error:
-    #         print(error)
-    #         return False
-
-    #     return True
+        return True

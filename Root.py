@@ -1,5 +1,7 @@
 from flask import request
 from flask_restful import Resource
+from json_driver import JsonDriver
+from pickle_driver import PickleDriver
 
 from sqlite_driver import SqliteDriver
 
@@ -7,6 +9,8 @@ from sqlite_driver import SqliteDriver
 class Root(Resource):
     def __init__(self: 'Root') -> None:
         self.sqlite_driver = SqliteDriver('cache.db')
+        self.json_driver = JsonDriver('data.json')
+        self.pickle_driver = PickleDriver('cache.pickle')
 
     def get(self: 'Root') -> dict:
         cache_key: str = request.args.get('cache_key', type=str, default=None)

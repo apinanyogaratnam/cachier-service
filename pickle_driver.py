@@ -1,4 +1,4 @@
-import json
+import pickle
 
 from datetime import datetime, timedelta
 
@@ -13,7 +13,7 @@ class PickleDriver:
             return None
 
         with open(self.filename, 'r') as f:
-            data: dict = json.load(f)
+            data: dict = pickle.load(f)
 
         cache_metadata = data.get(key, None)
 
@@ -35,23 +35,21 @@ class PickleDriver:
 
     def write_data(self: 'PickleDriver', key: str, value: object, cache_expiry: int | None = None) -> bool:
         try:
-            with open('data.json', 'r') as f:
-                data: dict = json.load(f)
+            with open(self.filename, 'r') as f:
+                data: dict = pickle.load(f)
 
-            if not cache_expiry:
-                encoded_expiry = ''
-            else:
+            expiry_date = None
+            if cache_expiry:
                 expiry_date: datetime = datetime.now() + timedelta(seconds=cache_expiry)
-                encoded_expiry: str = expiry_date.isoformat()
 
             # update the data
             data[key] = {
                 'value': value,
-                'expiry': encoded_expiry,
+                'expiry': expiry_date,
             }
 
-            with open('data.json', 'w') as f:
-                json.dump(data, f)
+            with open(self.filename, 'w') as f:
+                pickle.dump(data, f)
         except Exception as error:
             print(error)
             return False

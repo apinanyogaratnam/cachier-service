@@ -35,7 +35,7 @@ class JsonDriver:
 
     def write_data(self: 'JsonDriver', key: str, value: object, cache_expiry: int | None = None) -> bool:
         try:
-            with open('data.json', 'r') as f:
+            with open(self.filename, 'r') as f:
                 data: dict = json.load(f)
 
             if not cache_expiry:
@@ -50,7 +50,7 @@ class JsonDriver:
                 'expiry': encoded_expiry,
             }
 
-            with open('data.json', 'w') as f:
+            with open(self.filename, 'w') as f:
                 json.dump(data, f)
         except Exception as error:
             print(error)

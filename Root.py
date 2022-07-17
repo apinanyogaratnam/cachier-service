@@ -4,7 +4,6 @@ from flask_restful import Resource
 from json_driver import JsonDriver
 from pickle_driver import PickleDriver
 from sqlite_driver import SqliteDriver
-# TODO: fix this import
 from module_types import Driver
 
 

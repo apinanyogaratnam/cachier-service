@@ -17,10 +17,12 @@ class Root(Resource):
 
     def get(self: 'Root') -> dict:
         cache_key: str = request.args.get('cache_key', type=str, default=None)
+        driver: str = request.args.get('driver', type=str, default=None)
 
         if not cache_key: return None
 
-        data = self.read_data(cache_key)
+        driver: Driver = self.get_driver(driver)
+        data = self.read_data(cache_key, driver)
 
         return {'value': data}
 
@@ -36,12 +38,14 @@ class Root(Resource):
         cache_key: str | None = body.get('cache_key', None)
         cache_value: object | None = body.get('cache_value', None)
         cache_expiry: int | None = body.get('cache_expiry', None)
+        driver: str | None = body.get('driver', None)
 
         if not cache_key or not cache_value:
             print('no cache key or value received')
             return False
 
-        is_saved_successfully: bool = self.write_data(cache_key, cache_value, cache_expiry)
+        driver: Driver = self.get_driver(driver)
+        is_saved_successfully: bool = self.write_data(cache_key, cache_value, cache_expiry, driver)
 
         return {'is_saved_successfully': is_saved_successfully}
 
@@ -60,3 +64,13 @@ class Root(Resource):
             return self.sqlite_driver.write_data(key, value, cache_expiry)
 
         return driver.write_data(key, value, cache_expiry)
+
+    def get_driver(self: 'Root', driver: str) -> Driver:
+        if driver == 'sqlite':
+            return self.sqlite_driver
+        elif driver == 'json':
+            return self.json_driver
+        elif driver == 'pickle':
+            return self.pickle_driver
+        else:
+            return None

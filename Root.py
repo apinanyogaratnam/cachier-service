@@ -55,7 +55,9 @@ class Root(Resource):
 
         return driver.read_data(key)
 
-    def write_data(self: 'Root', key: str, value: object, cache_expiry: int | None = None, driver: Driver = None) -> bool:
+    def write_data(
+        self: 'Root', key: str, value: object, cache_expiry: int | None = None, driver: Driver = None
+    ) -> bool:
         if not key: return False
 
         if not driver:

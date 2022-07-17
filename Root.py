@@ -5,6 +5,7 @@ from pickle_driver import PickleDriver
 
 from sqlite_driver import SqliteDriver
 
+# TODO: fix this import
 from types import Driver
 
 
@@ -47,9 +48,15 @@ class Root(Resource):
     def read_data(self: 'Root', key: str, driver: Driver = None) -> object | None:
         if not key: return None
 
-        return self.sqlite_driver.read_data(key)
+        if not driver:
+            return self.sqlite_driver.read_data(key)
+
+        return driver.read_data(key)
 
     def write_data(self: 'Root', key: str, value: object, cache_expiry: int | None = None, driver: Driver = None) -> bool:
         if not key: return False
 
-        return self.sqlite_driver.write_data(key, value, cache_expiry)
+        if not driver:
+            return self.sqlite_driver.write_data(key, value, cache_expiry)
+
+        return driver.write_data(key, value, cache_expiry)

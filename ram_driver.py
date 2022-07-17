@@ -34,7 +34,7 @@ class RamDriver:
         try:
             expiry_date = None
             if cache_expiry:
-                expiry_date: datetime = datetime.now() + timedelta(seconds=cache_expiry)
+                expiry_date: datetime = datetime.utcnow() + timedelta(seconds=cache_expiry)
 
                 # update the data
                 ram_storage[key] = {

@@ -66,6 +66,7 @@ class Root(Resource):
         return driver.write_data(key, value, cache_expiry)
 
     def get_driver(self: 'Root', driver: str) -> Driver:
+        # TODO: convert to dict and enum
         if driver == 'sqlite':
             return self.sqlite_driver
         elif driver == 'json':

@@ -5,7 +5,7 @@ from json_driver import JsonDriver
 from pickle_driver import PickleDriver
 from sqlite_driver import SqliteDriver
 # TODO: fix this import
-from types import Driver
+from module_types import Driver
 
 
 class Root(Resource):

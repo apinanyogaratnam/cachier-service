@@ -22,7 +22,7 @@ class RamDriver:
         if not cache_value: return None
         if not cache_expiry: return cache_value
 
-        expiry_date: datetime = datetime.fromisoformat(cache_expiry)
+        expiry_date: datetime = cache_expiry
         current_date: datetime = datetime.utcnow()
 
         cache_expired: bool = current_date > expiry_date

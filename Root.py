@@ -5,7 +5,7 @@ from json_driver import JsonDriver
 from pickle_driver import PickleDriver
 from sqlite_driver import SqliteDriver
 from ram_driver import RamDriver
-from module_types import Driver
+from module_types import Driver, DriverType
 
 
 class Root(Resource):
@@ -68,12 +68,11 @@ class Root(Resource):
         return driver.write_data(key, value, cache_expiry)
 
     def get_driver(self: 'Root', driver: str) -> Driver:
-        # TODO: convert to enum
         driver_map = {
-            'sqlite': self.sqlite_driver,
-            'json': self.json_driver,
-            'pickle': self.pickle_driver,
-            'ram': self.ram_driver,
+            DriverType.SQLITE: self.sqlite_driver,
+            DriverType.JSON: self.json_driver,
+            DriverType.PICKLE: self.pickle_driver,
+            DriverType.RAM: self.ram_driver,
         }
 
         return driver_map.get(driver, None)

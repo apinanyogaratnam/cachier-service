@@ -19,5 +19,5 @@ class DriverType(Enum):
     def __init__(self: 'DriverType', value: str) -> None:
         self.value = value
 
-    def __eq__(self, other):
+    def __eq__(self: 'DriverType', other: 'DriverType') -> bool:
         return self.value == other.value

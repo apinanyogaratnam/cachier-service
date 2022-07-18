@@ -16,5 +16,8 @@ class DriverType(Enum):
     PICKLE = 'pickle'
     RAM = 'ram'
 
+    def __init__(self: 'DriverType', value: str) -> None:
+        self.value = value
+
     def __eq__(self, other):
         return self.value == other.value

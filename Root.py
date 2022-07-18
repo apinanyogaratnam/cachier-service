@@ -68,6 +68,8 @@ class Root(Resource):
         return driver.write_data(key, value, cache_expiry)
 
     def get_driver(self: 'Root', driver: str) -> Driver:
+        driver = DriverType(driver)
+
         driver_map = {
             DriverType.SQLITE: self.sqlite_driver,
             DriverType.JSON: self.json_driver,

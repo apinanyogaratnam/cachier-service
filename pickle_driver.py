@@ -39,7 +39,7 @@ class PickleDriver:
 
     def write_data(self: 'PickleDriver', key: str, value: object, cache_expiry: int | None = None) -> bool:
         try:
-            with open(self.filename, 'r') as f:
+            with open(self.filename, 'rb') as f:
                 data: dict = pickle.load(f)
 
             expiry_date = None

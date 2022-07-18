@@ -53,7 +53,7 @@ class Root(Resource):
         if not key: return None
 
         if not driver:
-            return self.sqlite_driver.read_data(key)
+            return self.ram_driver.read_data(key)
 
         return driver.read_data(key)
 
@@ -63,7 +63,7 @@ class Root(Resource):
         if not key: return False
 
         if not driver:
-            return self.sqlite_driver.write_data(key, value, cache_expiry)
+            return self.ram_driver.write_data(key, value, cache_expiry)
 
         return driver.write_data(key, value, cache_expiry)
 

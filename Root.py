@@ -4,6 +4,7 @@ from flask_restful import Resource
 from json_driver import JsonDriver
 from pickle_driver import PickleDriver
 from sqlite_driver import SqliteDriver
+from ram_driver import RamDriver
 from module_types import Driver
 
 
@@ -12,6 +13,7 @@ class Root(Resource):
         self.sqlite_driver = SqliteDriver('cache.db')
         self.json_driver = JsonDriver('data.json')
         self.pickle_driver = PickleDriver('cache.pickle')
+        self.ram_driver = RamDriver()
 
     def get(self: 'Root') -> dict:
         cache_key: str = request.args.get('cache_key', type=str, default=None)

@@ -68,12 +68,12 @@ class Root(Resource):
         return driver.write_data(key, value, cache_expiry)
 
     def get_driver(self: 'Root', driver: str) -> Driver:
-        # TODO: convert to dict and enum
-        if driver == 'sqlite':
-            return self.sqlite_driver
-        elif driver == 'json':
-            return self.json_driver
-        elif driver == 'pickle':
-            return self.pickle_driver
-        else:
-            return None
+        # TODO: convert to enum
+        driver_map = {
+            'sqlite': self.sqlite_driver,
+            'json': self.json_driver,
+            'pickle': self.pickle_driver,
+            'ram': self.ram_driver,
+        }
+
+        return driver_map.get(driver, None)

@@ -13,7 +13,11 @@ class PickleDriver:
             return None
 
         with open(self.filename, 'rb') as f:
-            data: dict = pickle.load(f)
+            try:
+                data: dict = pickle.load(f)
+            except Exception as error:
+                print(error)
+                return None
 
         cache_metadata = data.get(key, None)
 

@@ -11,10 +11,10 @@ class Driver(SqliteDriver, JsonDriver, PickleDriver, RamDriver):
 
 
 class DriverType(Enum):
-    SQLITE = 1
-    JSON = 2
-    PICKLE = 3
-    RAM = 4
+    SQLITE = 'sqlite'
+    JSON = 'json'
+    PICKLE = 'pickle'
+    RAM = 'ram'
 
     def __eq__(self, other):
         return self.value == other.value

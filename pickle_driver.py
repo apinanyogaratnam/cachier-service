@@ -12,7 +12,7 @@ class PickleDriver:
             print('no key to read')
             return None
 
-        with open(self.filename, 'r') as f:
+        with open(self.filename, 'rb') as f:
             data: dict = pickle.load(f)
 
         cache_metadata = data.get(key, None)
@@ -48,7 +48,7 @@ class PickleDriver:
                 'expiry': expiry_date,
             }
 
-            with open(self.filename, 'w') as f:
+            with open(self.filename, 'wb') as f:
                 pickle.dump(data, f)
         except Exception as error:
             print(error)

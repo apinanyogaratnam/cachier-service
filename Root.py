@@ -1,3 +1,4 @@
+from cachier_common_library import DriverType
 from flask import request
 from flask_restful import Resource
 
@@ -5,7 +6,7 @@ from json_driver import JsonDriver
 from pickle_driver import PickleDriver
 from sqlite_driver import SqliteDriver
 from ram_driver import RamDriver
-from module_types import Driver, DriverType
+from module_types import Driver
 
 
 class Root(Resource):
@@ -69,10 +70,10 @@ class Root(Resource):
 
     def get_driver(self: 'Root', driver: str | None) -> Driver:
         driver_map = {
-            DriverType.SQLITE.value: self.sqlite_driver,
-            DriverType.JSON.value: self.json_driver,
-            DriverType.PICKLE.value: self.pickle_driver,
-            DriverType.RAM.value: self.ram_driver,
+            DriverType.SQLITE: self.sqlite_driver,
+            DriverType.JSON: self.json_driver,
+            DriverType.PICKLE: self.pickle_driver,
+            DriverType.RAM: self.ram_driver,
         }
 
         return driver_map.get(driver, None)

@@ -1,4 +1,5 @@
 aniso8601==9.0.1
+cachier-common-library==0.0.2
 click==8.1.3
 flake8==4.0.1
 Flask==2.1.2

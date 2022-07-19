@@ -45,6 +45,9 @@ all:
 freeze:
 	pip freeze > requirements.txt
 
+freeze-dev:
+	pip freeze > requirements_dev.txt
+
 venv:
 	python3 -m venv venv
 

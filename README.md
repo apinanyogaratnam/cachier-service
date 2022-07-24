@@ -26,6 +26,7 @@ TODO: add an option to use ram disk for cache
 TODO: load balance the service with nginx
 TODO: make a common class for drivers to inherit from with common methods like checking expiration
 TODO: create a types library for the service and the python package to use and share for enums
+TODO: encode cache value when setting and getting
 -->
 
 <!-- ## Table of Contents

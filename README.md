@@ -27,6 +27,7 @@ TODO: load balance the service with nginx
 TODO: make a common class for drivers to inherit from with common methods like checking expiration
 TODO: create a types library for the service and the python package to use and share for enums
 TODO: encode cache value when setting and getting
+TODO: use cpickle as a driver for the cache
 -->
 
 <!-- ## Table of Contents
